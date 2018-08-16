@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="workout"
+            type="com.tech387.wokroutapp.data.Workout" />
+    </data>
+
+    <android.support.design.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin"
+        app:cardCornerRadius="@dimen/radiusCorner"
+        app:cardElevation="@dimen/elevetion">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorConstraintLayout">
+
+            <!-- with LinearLayout we have better horizontal line-->
+            <LinearLayout
+                android:id="@+id/ll_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_tagE"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorWhite"
+                    app:workoutTags="@{workout.tags}"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="5dp"
+                    android:background="@drawable/back"/>
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ll_main"
+                android:text="@{workout.name}"
+                android:textSize="@dimen/textBig"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
+
+            <TextView
+                android:id="@+id/tv_tagR"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_name"
+                app:workoutTags="@{workout.equipentTags}"
+                android:textSize="@dimen/textSmall"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="5dp"/>
+
+            <TextView
+                android:id="@+id/tv_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ll_main"
+                app:duration="@{workout.duration}"
+                android:textSize="@dimen/textSmall"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"/>
+
+        </android.support.constraint.ConstraintLayout>
+    </android.support.design.card.MaterialCardView>
+</layout>

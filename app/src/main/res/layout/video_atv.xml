@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="video"
+            type="com.tech387.wokroutapp.data.Video" />
+    </data>
+
+
+<android.support.design.widget.CoordinatorLayout
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".main.video.VideoActivity">
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- AppBarLayout with Toolbar -->
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/abl_video"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:background="@color/colorBlack">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/tb_video"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+        </android.support.design.widget.AppBarLayout>
+
+        <VideoView
+            android:id="@+id/vv_movement"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:video="@{video.video}"
+            app:layout_constraintDimensionRatio="1:0.8"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/abl_video" />
+
+        <ImageView
+            android:id="@+id/iv_muscle"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:loadImage="@{video.img}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vv_movement" />
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.design.widget.CoordinatorLayout>
+    </layout>
