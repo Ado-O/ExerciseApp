@@ -1,15 +1,16 @@
 package com.tech387.wokroutapp.data.storage.convertor;
 
 
-import android.util.Log;
-
-import com.tech387.wokroutapp.data.Exercise;
-import com.tech387.wokroutapp.data.ExerciseTag;
-import com.tech387.wokroutapp.data.Tag;
-import com.tech387.wokroutapp.data.Workout;
-import com.tech387.wokroutapp.data.WorkoutTag;
+import com.tech387.wokroutapp.data.storage.local.exercise.Exercise;
+import com.tech387.wokroutapp.data.storage.local.exercise.ExerciseTag;
+import com.tech387.wokroutapp.data.storage.local.Tag.Tag;
+import com.tech387.wokroutapp.data.storage.local.shoppackage.ShopPackage;
+import com.tech387.wokroutapp.data.storage.local.shoppackage.ShopPackageTag;
+import com.tech387.wokroutapp.data.storage.local.workout.Workout;
+import com.tech387.wokroutapp.data.storage.local.workout.WorkoutTag;
 import com.tech387.wokroutapp.data.storage.remote.response.ExerciseResponse;
 import com.tech387.wokroutapp.data.storage.remote.response.FormatResponse;
+import com.tech387.wokroutapp.data.storage.remote.response.PackagesResponse;
 import com.tech387.wokroutapp.data.storage.remote.response.TagResponse;
 import com.tech387.wokroutapp.data.storage.remote.response.WorkoutResponse;
 import com.tech387.wokroutapp.data.storage.remote.response.WorkoutTagResponse;
@@ -80,6 +81,29 @@ public class RemoteToLocal {
     }
 
     /**
+     * we redict response from networking (packages)
+     *
+     * @param packagesResponses -> object wich we get workout
+     * @return -> new create list, which have all needed data
+     */
+    public static List<ShopPackage> shopPackagesConverter(List<PackagesResponse> packagesResponses) {
+        List<ShopPackage> shopPackages = new ArrayList<>();
+
+        for (PackagesResponse p : packagesResponses) {
+            shopPackages.add(
+                    new ShopPackage(
+                            p.getId(),
+                            p.getThumbnail(),
+                            p.getName(),
+                            p.getDescription()
+                    )
+            );
+        }
+
+        return shopPackages;
+    }
+
+    /**
      * we redict response from networking (tags)
      *
      * @param tagResponses -> object wich we get Tags
@@ -132,6 +156,20 @@ public class RemoteToLocal {
 
 
         return workoutTags;
+    }
+
+    /**
+     * adding data in shoppackage-tags-table
+     * @return
+     */
+    public static List<ShopPackageTag> shopPackageTagConverter(long shopPackageID, List<Integer> tags) {
+        List<ShopPackageTag> shopPackageTags = new ArrayList<>();
+
+        for (long tagId : tags) {
+            shopPackageTags.add(new ShopPackageTag(shopPackageID, tagId));
+        }
+
+        return shopPackageTags;
     }
 
 }

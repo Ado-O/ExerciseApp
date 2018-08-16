@@ -1,8 +1,6 @@
 package com.tech387.wokroutapp.data.storage;
 
-import android.util.Log;
-
-import com.tech387.wokroutapp.data.Workout;
+import com.tech387.wokroutapp.data.storage.local.workout.Workout;
 import com.tech387.wokroutapp.data.storage.local.workout.WorkoutLocalDataSource;
 
 import java.util.List;

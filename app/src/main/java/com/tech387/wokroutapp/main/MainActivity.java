@@ -8,22 +8,16 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 
-import com.tech387.wokroutapp.Injection;
 import com.tech387.wokroutapp.R;
-import com.tech387.wokroutapp.data.Exercise;
-import com.tech387.wokroutapp.data.storage.ContentRepository;
-import com.tech387.wokroutapp.data.storage.ExerciseRepository;
 import com.tech387.wokroutapp.main.exercises.ExerciseFragment;
 import com.tech387.wokroutapp.main.other.FiveFragment;
 import com.tech387.wokroutapp.main.other.FourFragment;
-import com.tech387.wokroutapp.main.other.ThreeFragment;
+import com.tech387.wokroutapp.main.shoppackage.ShopPackageFragment;
 import com.tech387.wokroutapp.main.wokrouts.WorkoutFragment;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -114,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Fragment> arrayList = new ArrayList<>();
         arrayList.add(ExerciseFragment.newInstance());
         arrayList.add(WorkoutFragment.newInstance());
-        arrayList.add(ThreeFragment.newInstance());
+        arrayList.add(ShopPackageFragment.newInstance());
         arrayList.add(FourFragment.newInstance());
         arrayList.add(FiveFragment.newInstance());
 

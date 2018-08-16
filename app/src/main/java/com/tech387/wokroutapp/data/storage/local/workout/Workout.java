@@ -1,9 +1,11 @@
-package com.tech387.wokroutapp.data;
+package com.tech387.wokroutapp.data.storage.local.workout;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
+
+import com.tech387.wokroutapp.data.storage.local.Tag.Tag;
 
 import java.util.List;
 

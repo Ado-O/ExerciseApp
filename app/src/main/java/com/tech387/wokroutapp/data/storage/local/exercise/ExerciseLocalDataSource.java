@@ -1,6 +1,5 @@
 package com.tech387.wokroutapp.data.storage.local.exercise;
 
-import com.tech387.wokroutapp.data.Exercise;
 import com.tech387.wokroutapp.data.storage.convertor.RemoteToLocal;
 import com.tech387.wokroutapp.data.storage.remote.response.ExerciseResponse;
 import com.tech387.wokroutapp.util.AppExecutors;

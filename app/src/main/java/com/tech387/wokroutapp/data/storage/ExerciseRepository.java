@@ -2,7 +2,7 @@ package com.tech387.wokroutapp.data.storage;
 
 import android.util.Log;
 
-import com.tech387.wokroutapp.data.Exercise;
+import com.tech387.wokroutapp.data.storage.local.exercise.Exercise;
 import com.tech387.wokroutapp.data.storage.local.exercise.ExerciseLocalDataSource;
 
 import java.util.List;

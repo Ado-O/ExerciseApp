@@ -1,12 +1,12 @@
 package com.tech387.wokroutapp.main.exercises;
 
 import android.databinding.BindingAdapter;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.tech387.wokroutapp.data.Tag;
+import com.bumptech.glide.request.RequestOptions;
+import com.tech387.wokroutapp.data.storage.local.Tag.Tag;
 
 import java.util.List;
 

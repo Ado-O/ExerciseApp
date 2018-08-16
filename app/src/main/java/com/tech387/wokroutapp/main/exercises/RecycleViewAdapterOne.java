@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.tech387.wokroutapp.data.Exercise;
+import com.tech387.wokroutapp.data.storage.local.exercise.Exercise;
 import com.tech387.wokroutapp.databinding.ExerciseListBinding;
 import com.tech387.wokroutapp.util.RecyclerViewClickListener;
 

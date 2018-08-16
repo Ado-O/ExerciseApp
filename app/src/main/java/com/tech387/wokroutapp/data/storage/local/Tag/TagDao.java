@@ -5,9 +5,6 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 
-import com.tech387.wokroutapp.data.Exercise;
-import com.tech387.wokroutapp.data.Tag;
-
 import java.util.List;
 
 @Dao

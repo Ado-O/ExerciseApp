@@ -1,4 +1,4 @@
-package com.tech387.wokroutapp.data;
+package com.tech387.wokroutapp.data.storage.local.workout;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;

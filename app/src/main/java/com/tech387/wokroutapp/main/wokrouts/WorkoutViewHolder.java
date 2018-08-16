@@ -3,7 +3,7 @@ package com.tech387.wokroutapp.main.wokrouts;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 
-import com.tech387.wokroutapp.data.Workout;
+import com.tech387.wokroutapp.data.storage.local.workout.Workout;
 import com.tech387.wokroutapp.databinding.WorkoutListBinding;
 
 public class WorkoutViewHolder extends RecyclerView.ViewHolder {

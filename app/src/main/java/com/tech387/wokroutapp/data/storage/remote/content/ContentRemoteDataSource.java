@@ -2,6 +2,8 @@ package com.tech387.wokroutapp.data.storage.remote.content;
 
 
 
+import android.util.Log;
+
 import com.tech387.wokroutapp.data.storage.remote.ServiceGenerator;
 import com.tech387.wokroutapp.data.storage.remote.response.BaseResponse;
 
@@ -42,9 +44,11 @@ public class ContentRemoteDataSource {
                         if (response.isSuccessful()) {
 
                             callback.onSuccess(response.body());
+
                         } else {
                             callback.onError();
                         }
+
                     }
 
                     @Override

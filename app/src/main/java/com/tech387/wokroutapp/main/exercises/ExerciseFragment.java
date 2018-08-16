@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 
 import com.tech387.wokroutapp.Injection;
 import com.tech387.wokroutapp.R;
-import com.tech387.wokroutapp.data.Exercise;
+import com.tech387.wokroutapp.data.storage.local.exercise.Exercise;
 import com.tech387.wokroutapp.data.storage.ContentRepository;
 import com.tech387.wokroutapp.data.storage.ExerciseRepository;
 import com.tech387.wokroutapp.main.video.VideoActivity;

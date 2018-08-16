@@ -1,4 +1,4 @@
-package com.tech387.wokroutapp.main.wokrouts;
+package com.tech387.wokroutapp.main.shoppackage;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,52 +13,55 @@ import android.view.ViewGroup;
 
 import com.tech387.wokroutapp.Injection;
 import com.tech387.wokroutapp.R;
-import com.tech387.wokroutapp.data.storage.local.workout.Workout;
 import com.tech387.wokroutapp.data.storage.ContentRepository;
-import com.tech387.wokroutapp.data.storage.WorkoutRepository;
+import com.tech387.wokroutapp.data.storage.ShopPackageRespository;
+import com.tech387.wokroutapp.data.storage.local.shoppackage.ShopPackage;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class WorkoutFragment extends Fragment {
+public class ShopPackageFragment extends Fragment{
 
-    Context mContext;
+    private Context mContext;
     private RecyclerView mRecyclerView;
-    private RecycleViewAdapterTwo mRecycleViewAdapterTwo;
-    private WorkoutRepository mWorkoutRepository;
+    private RecycleViewAdapterThree mRecycleViewAdapterThree;
     private ContentRepository mContentRepository;
+    private ShopPackageRespository mShopPackageRespository;
 
-    public static WorkoutFragment newInstance() {
-        return new WorkoutFragment();
+    public static ShopPackageFragment newInstance() {
+        return new ShopPackageFragment();
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.workout_frag, container, false);
-        //create context
+        View view = inflater.inflate(R.layout.shop_package_frag, container, false);
+
         mContext = getActivity();
 
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_workout);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_package);
 
-        setupRvTwo();
+        setupRvThree();
 
         return view;
     }
 
-    public void setupRvTwo() {
+
+    public void setupRvThree(){
 
         mContentRepository = Injection.provideContentRepository(mContext);
         mContentRepository.getContent();
 
-        mWorkoutRepository = Injection.provideWorkoutRepository(mContext);
-        mWorkoutRepository.getWorkout(new WorkoutRepository.GetWorkoutsCallback() {
+        mShopPackageRespository = Injection.provideShopPackageRepository(mContext);
+        mShopPackageRespository.getShopPackages(new ShopPackageRespository.GetExerciseCallback() {
             @Override
-            public void onSuccess(List<Workout> workouts) {
+            public void onSuccess(List<ShopPackage> shopPackages) {
 
                 //create adapter and take list
-                mRecycleViewAdapterTwo = new RecycleViewAdapterTwo(mContext, workouts);
+                mRecycleViewAdapterThree = new RecycleViewAdapterThree(mContext, shopPackages);
                 mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                mRecyclerView.setAdapter(mRecycleViewAdapterTwo);
+                mRecyclerView.setAdapter(mRecycleViewAdapterThree);
+
             }
 
             @Override
@@ -66,5 +69,6 @@ public class WorkoutFragment extends Fragment {
 
             }
         });
+
     }
 }

@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import com.tech387.wokroutapp.databinding.ExerciseListBinding;
 
-import com.tech387.wokroutapp.data.Exercise;
+import com.tech387.wokroutapp.data.storage.local.exercise.Exercise;
 import com.tech387.wokroutapp.util.RecyclerViewClickListener;
 
 public class ExerciseViewHolder extends RecyclerView.ViewHolder {

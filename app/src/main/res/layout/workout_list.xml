@@ -5,7 +5,7 @@
     <data>
         <variable
             name="workout"
-            type="com.tech387.wokroutapp.data.Workout" />
+            type="com.tech387.wokroutapp.data.storage.local.workout.Workout" />
     </data>
 
     <android.support.design.card.MaterialCardView
@@ -26,20 +26,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorWhite"
+                app:tags="@{workout.tags}"
                 android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tv_tagE"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorWhite"
-                    app:workoutTags="@{workout.tags}"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginRight="5dp"
-                    android:padding="5dp"
-                    android:background="@drawable/back"/>
 
 
             </LinearLayout>

@@ -1,6 +1,5 @@
 package com.tech387.wokroutapp.data.storage.local.Tag;
 
-import com.tech387.wokroutapp.data.Tag;
 import com.tech387.wokroutapp.data.storage.convertor.RemoteToLocal;
 import com.tech387.wokroutapp.data.storage.remote.response.TagResponse;
 import com.tech387.wokroutapp.util.AppExecutors;

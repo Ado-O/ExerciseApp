@@ -12,7 +12,7 @@
 
         <variable
             name="exercise"
-            type="com.tech387.wokroutapp.data.Exercise"/>
+            type="com.tech387.wokroutapp.data.storage.local.exercise.Exercise"/>
     </data>
 
     <android.support.design.card.MaterialCardView

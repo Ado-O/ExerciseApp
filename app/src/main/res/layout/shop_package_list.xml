@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="shoppackage"
+            type="com.tech387.wokroutapp.data.storage.local.shoppackage.ShopPackage" />
+    </data>
+
+    <android.support.design.card.MaterialCardView
+        android:id="@+id/mcv_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin"
+        app:cardCornerRadius="@dimen/radiusCorner"
+        app:cardElevation="@dimen/elevetion">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_packageImg"
+                android:layout_width="150dp"
+                android:layout_height="200dp"
+                app:loadImage="@{shoppackage.img}"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:background="@drawable/ic_launcher_background"/>
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="5dp"
+                android:text="@{shoppackage.title}"
+                android:textSize="@dimen/textBig"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toRightOf="@id/iv_packageImg"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"/>
+
+            <TextView
+                android:id="@+id/tv_des"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:textSize="@dimen/textSmall"
+                android:text="@{shoppackage.description}"
+                app:layout_constraintLeft_toRightOf="@id/iv_packageImg"
+                app:layout_constraintTop_toBottomOf="@id/tv_title"
+                app:layout_constraintRight_toRightOf="parent"/>
+
+            <TextView
+                android:id="@+id/tv_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/textSmall"
+                app:exerciseTags="@{shoppackage.tags}"
+                app:layout_constraintLeft_toRightOf="@id/iv_packageImg"
+                app:layout_constraintTop_toBottomOf="@id/tv_des"
+                android:background="@drawable/back"/>
+
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.design.card.MaterialCardView>
+</layout>

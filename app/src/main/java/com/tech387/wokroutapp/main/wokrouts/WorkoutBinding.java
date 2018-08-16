@@ -1,16 +1,16 @@
 package com.tech387.wokroutapp.main.wokrouts;
 
-import android.content.Context;
 import android.databinding.BindingAdapter;
-import android.util.Log;
+import android.support.design.chip.Chip;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.tech387.wokroutapp.data.Tag;
-import com.tech387.wokroutapp.data.Workout;
-import com.tech387.wokroutapp.data.WorkoutTag;
-import com.tech387.wokroutapp.data.storage.remote.response.WorkoutTagResponse;
+import com.tech387.wokroutapp.R;
+import com.tech387.wokroutapp.data.storage.local.Tag.Tag;
+import com.tech387.wokroutapp.data.storage.local.workout.Workout;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class WorkoutBinding {
@@ -24,7 +24,7 @@ public class WorkoutBinding {
         String text = "";
 
         for (int i = 0; i < tags.size(); i++) {
-            text += tags.get(i).getName() + ", ";
+            text += tags.get(i).getName() + " ";
         }
 
         textView.setText(text);
@@ -35,11 +35,33 @@ public class WorkoutBinding {
     @BindingAdapter({"app:duration"})
     public static void setNumber(TextView textView, Long number) {
 
-        int minutes = (int) ((number / (1000*60)) % 60);
+        int minutes = (int) ((number / (1000 * 60)) % 60);
 
         String addMinuit = minutes + " min";
 
         textView.setText(String.valueOf(addMinuit));
+    }
+
+
+    @SuppressWarnings("unchecked")
+    @BindingAdapter({"app:tags"})
+    public static void setLayout(LinearLayout linearLayout, List tags) {
+
+        linearLayout.removeAllViews();
+
+        if (tags != null) {
+            LayoutInflater inflater = LayoutInflater.from(linearLayout.getContext());
+           for (Tag tag :((List<Tag>)tags)) {
+
+                TextView view = (TextView) inflater.inflate(
+                        R.layout.tag, linearLayout, false
+                );
+
+                view.setText(tag.getName());
+                linearLayout.addView(view);
+            }
+        }
+
     }
 
 }
