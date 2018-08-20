@@ -14,9 +14,11 @@ import android.view.ViewGroup;
 
 import com.tech387.wokroutapp.Injection;
 import com.tech387.wokroutapp.R;
+import com.tech387.wokroutapp.ViewModelFactory;
 import com.tech387.wokroutapp.data.storage.local.exercise.Exercise;
 import com.tech387.wokroutapp.data.storage.ContentRepository;
 import com.tech387.wokroutapp.data.storage.ExerciseRepository;
+import com.tech387.wokroutapp.databinding.ExerciseFragBinding;
 import com.tech387.wokroutapp.main.video.VideoActivity;
 import com.tech387.wokroutapp.util.RecyclerViewClickListener;
 
@@ -24,13 +26,12 @@ import java.util.List;
 
 public class ExerciseFragment extends Fragment implements RecyclerViewClickListener{
 
-    private static final String TAG = ExerciseFragment.class.getSimpleName();
 
     Context mContext;
-    private RecyclerView mRecyclerView;
+    private ExerciseFragBinding mBinding;
     private RecycleViewAdapterOne mRecycleViewAdapter;
-    private ExerciseRepository mExerciseRepository;
-    private ContentRepository mContentRepository;
+    private ExerciseViewModel mExerciseViewModel;
+
 
     public static ExerciseFragment newInstance() {
         return new ExerciseFragment();
@@ -39,49 +40,35 @@ public class ExerciseFragment extends Fragment implements RecyclerViewClickListe
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.exercise_frag, container, false);
+        mBinding = ExerciseFragBinding.inflate(inflater, container, false);
 
         mContext = getActivity();
 
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_exercise);
+        mExerciseViewModel = ViewModelFactory.obtainViewModel(getActivity(), ExerciseViewModel.class);
+        mExerciseViewModel.start();
+
+        mBinding.setViewModel(mExerciseViewModel);
 
         setupRv();
 
-        return view;
+        return mBinding.getRoot();
     }
 
     public void setupRv() {
 
-        mContentRepository = Injection.provideContentRepository(mContext);
-        mContentRepository.getContent();
 
-        mExerciseRepository = Injection.provideExerciseRepository(mContext);
-        mExerciseRepository.getExercises(new ExerciseRepository.GetExerciseCallback() {
-            @Override
-            public void onSuccess(List<Exercise> exercises) {
+        mRecycleViewAdapter = new RecycleViewAdapterOne(
+                mContext,
+                ExerciseFragment.this);
 
-                mRecycleViewAdapter = new RecycleViewAdapterOne(mContext, exercises, ExerciseFragment.this);
-                mRecyclerView.setLayoutManager(new GridLayoutManager(mContext, 2));
-                mRecyclerView.setAdapter(mRecycleViewAdapter);
-
-            }
-
-            @Override
-            public void onError() {
-
-            }
-        });
+        mBinding.rvExercise.setLayoutManager(new GridLayoutManager(mContext, 2));
+        mBinding.rvExercise.setAdapter(mRecycleViewAdapter);
 
     }
 
     @Override
     public void recyclerViewListClicked(View v, Exercise exercise) {
-        Intent intent = new Intent(mContext, VideoActivity.class);
-        intent.putExtra("course", exercise.getMuscle());
-        intent.putExtra("courseTitle", exercise.getTitle());
-        intent.putExtra("courseVideo", exercise.getVideo());
-        mContext.startActivity(intent);
-
+        mExerciseViewModel.getOpenExerciseEvente().setValue(exercise);
     }
 
 }

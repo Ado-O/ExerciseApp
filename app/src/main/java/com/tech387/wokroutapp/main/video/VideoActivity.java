@@ -1,10 +1,13 @@
 package com.tech387.wokroutapp.main.video;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.VideoView;
@@ -12,6 +15,7 @@ import android.widget.VideoView;
 import com.bumptech.glide.Glide;
 import com.tech387.wokroutapp.R;
 import com.tech387.wokroutapp.data.Video;
+import com.tech387.wokroutapp.data.storage.local.exercise.Exercise;
 import com.tech387.wokroutapp.databinding.VideoAtvBinding;
 
 public class VideoActivity extends AppCompatActivity {
@@ -23,10 +27,27 @@ public class VideoActivity extends AppCompatActivity {
     public String courseVideo;
     private VideoAtvBinding binding;
 
+
+    /**
+     * catch data from another activity
+     * @param activity
+     * @param exercise -> what object is calling
+     */
+    public static void startActivity(Activity activity, Exercise exercise){
+
+        Intent intent = new Intent(activity, VideoActivity.class);
+        intent.putExtra("course", exercise.getMuscle());
+        intent.putExtra("courseVideo", exercise.getVideo());
+        intent.putExtra("courseTitle", exercise.getTitle());
+        activity.startActivity(intent);
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.video_atv);
+
 
         /**
          * get onClick from user and in this case we teak title exercise and mp4 video

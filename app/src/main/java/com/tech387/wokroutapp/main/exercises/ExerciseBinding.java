@@ -1,6 +1,7 @@
 package com.tech387.wokroutapp.main.exercises;
 
 import android.databinding.BindingAdapter;
+import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -40,6 +41,15 @@ public class ExerciseBinding {
         Glide.with(view.getContext())
                 .load(img)
                 .into(view);
+    }
+
+    @SuppressWarnings("unchecked")
+    @BindingAdapter("app:exercise")
+    public static void setExercise(RecyclerView recyclerView, List items) {
+        RecycleViewAdapterOne adapter = (RecycleViewAdapterOne) recyclerView.getAdapter();
+        if (adapter != null && items != null) {
+            adapter.setExercise(items);
+        }
     }
 
 }

@@ -10,19 +10,19 @@ import com.tech387.wokroutapp.data.storage.local.exercise.Exercise;
 import com.tech387.wokroutapp.databinding.ExerciseListBinding;
 import com.tech387.wokroutapp.util.RecyclerViewClickListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecycleViewAdapterOne extends RecyclerView.Adapter {
 
 
-    private List<Exercise> mList;
+    private List<Exercise> mList = new ArrayList<>();
     private LayoutInflater mInflater;
     private RecyclerViewClickListener mListener;
     private Context mContext;
 
-    public RecycleViewAdapterOne(Context context, List<Exercise> list, RecyclerViewClickListener listener) {
+    public RecycleViewAdapterOne(Context context, RecyclerViewClickListener listener) {
         mInflater = LayoutInflater.from(context);
-        mList = list;
         mListener = listener;
 
         mContext = context;
@@ -44,6 +44,12 @@ public class RecycleViewAdapterOne extends RecyclerView.Adapter {
     @Override
     public int getItemCount() {
         return mList.size();
+    }
+
+    public void setExercise(List<Exercise> movies) {
+        mList.clear();
+        mList.addAll(movies);
+        notifyDataSetChanged();
     }
 }
 
