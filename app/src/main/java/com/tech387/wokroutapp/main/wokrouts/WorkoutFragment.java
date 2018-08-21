@@ -13,19 +13,20 @@ import android.view.ViewGroup;
 
 import com.tech387.wokroutapp.Injection;
 import com.tech387.wokroutapp.R;
+import com.tech387.wokroutapp.ViewModelFactory;
 import com.tech387.wokroutapp.data.storage.local.workout.Workout;
 import com.tech387.wokroutapp.data.storage.ContentRepository;
 import com.tech387.wokroutapp.data.storage.WorkoutRepository;
+import com.tech387.wokroutapp.databinding.WorkoutFragBinding;
 
 import java.util.List;
 
 public class WorkoutFragment extends Fragment {
 
     Context mContext;
-    private RecyclerView mRecyclerView;
     private RecycleViewAdapterTwo mRecycleViewAdapterTwo;
-    private WorkoutRepository mWorkoutRepository;
-    private ContentRepository mContentRepository;
+    private WorkoutViewModel mWorkoutViewModel;
+    private WorkoutFragBinding mBinding;
 
     public static WorkoutFragment newInstance() {
         return new WorkoutFragment();
@@ -34,37 +35,24 @@ public class WorkoutFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.workout_frag, container, false);
-        //create context
+        mBinding = WorkoutFragBinding.inflate(inflater, container, false);
+
         mContext = getActivity();
 
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_workout);
+        mWorkoutViewModel = ViewModelFactory.obtainViewModel(getActivity(), WorkoutViewModel.class);
+        mWorkoutViewModel.start();
+        mBinding.setViewModel(mWorkoutViewModel);
 
         setupRvTwo();
 
-        return view;
+        return mBinding.getRoot();
     }
 
     public void setupRvTwo() {
 
-        mContentRepository = Injection.provideContentRepository(mContext);
-        mContentRepository.getContent();
+        mRecycleViewAdapterTwo = new RecycleViewAdapterTwo(mContext);
+        mBinding.rvWorkout.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mBinding.rvWorkout.setAdapter(mRecycleViewAdapterTwo);
 
-        mWorkoutRepository = Injection.provideWorkoutRepository(mContext);
-        mWorkoutRepository.getWorkout(new WorkoutRepository.GetWorkoutsCallback() {
-            @Override
-            public void onSuccess(List<Workout> workouts) {
-
-                //create adapter and take list
-                mRecycleViewAdapterTwo = new RecycleViewAdapterTwo(mContext, workouts);
-                mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                mRecyclerView.setAdapter(mRecycleViewAdapterTwo);
-            }
-
-            @Override
-            public void onError() {
-
-            }
-        });
     }
 }

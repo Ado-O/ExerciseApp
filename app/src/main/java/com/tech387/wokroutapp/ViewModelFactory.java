@@ -11,7 +11,13 @@ import android.support.v4.app.FragmentActivity;
 
 import com.tech387.wokroutapp.data.storage.ContentRepository;
 import com.tech387.wokroutapp.data.storage.ExerciseRepository;
+import com.tech387.wokroutapp.data.storage.ShopPackageRespository;
+import com.tech387.wokroutapp.data.storage.WorkoutRepository;
+import com.tech387.wokroutapp.data.storage.local.shoppackage.ShopPackage;
 import com.tech387.wokroutapp.main.exercises.ExerciseViewModel;
+import com.tech387.wokroutapp.main.shoppackage.ShopPackageViewHolder;
+import com.tech387.wokroutapp.main.shoppackage.ShopPackageViewModel;
+import com.tech387.wokroutapp.main.wokrouts.WorkoutViewModel;
 
 public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
     @SuppressLint("StaticFieldLeak")
@@ -22,6 +28,8 @@ public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
 
     private final ContentRepository mContentRepository;
     private final ExerciseRepository mExerciseRepository;
+    private final WorkoutRepository mWorkoutRepository;
+    private final ShopPackageRespository mShopPackageRespository;
 
     public static ViewModelFactory getInstance(Application application) {
 
@@ -32,7 +40,9 @@ public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
                     INSTANCE = new ViewModelFactory(
                             application,
                             Injection.provideContentRepository(application),
-                            Injection.provideExerciseRepository(application));
+                            Injection.provideExerciseRepository(application),
+                            Injection.provideWorkoutRepository(application),
+                            Injection.provideShopPackageRepository(application));
                 }
             }
         }
@@ -44,17 +54,36 @@ public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
         INSTANCE = null;
     }
 
-    private ViewModelFactory(Application application, ContentRepository mContentRepository, ExerciseRepository mExerciseRepository) {
+    private ViewModelFactory(Application application,
+                             ContentRepository mContentRepository,
+                             ExerciseRepository mExerciseRepository,
+                             WorkoutRepository mWorkoutRepository,
+                             ShopPackageRespository mShopPackageRespository) {
         mApplication = application;
         this.mContentRepository = mContentRepository;
         this.mExerciseRepository = mExerciseRepository;
+        this.mWorkoutRepository = mWorkoutRepository;
+        this.mShopPackageRespository = mShopPackageRespository;
 
     }
 
     @Override
     public <T extends ViewModel> T create(Class<T> modelClass) {
         if (modelClass.isAssignableFrom(ExerciseViewModel.class)) {
-            return (T) new ExerciseViewModel(mApplication, mContentRepository, mExerciseRepository);
+            return (T) new ExerciseViewModel(
+                    mApplication,
+                    mContentRepository,
+                    mExerciseRepository);
+        }else if (modelClass.isAssignableFrom(WorkoutViewModel.class)) {
+            return (T) new WorkoutViewModel(
+                    mApplication,
+                    mContentRepository,
+                    mWorkoutRepository);
+        }else if(modelClass.isAssignableFrom(ShopPackageViewModel.class)) {
+            return (T) new ShopPackageViewModel(
+                    mApplication,
+                    mContentRepository,
+                    mShopPackageRespository);
         }
 
         throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());

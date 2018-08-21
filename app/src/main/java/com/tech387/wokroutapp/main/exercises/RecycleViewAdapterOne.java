@@ -46,9 +46,9 @@ public class RecycleViewAdapterOne extends RecyclerView.Adapter {
         return mList.size();
     }
 
-    public void setExercise(List<Exercise> movies) {
+    public void setExercise(List<Exercise> list) {
         mList.clear();
-        mList.addAll(movies);
+        mList.addAll(list);
         notifyDataSetChanged();
     }
 }

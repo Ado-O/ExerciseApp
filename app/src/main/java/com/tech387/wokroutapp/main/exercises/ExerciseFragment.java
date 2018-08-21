@@ -46,7 +46,6 @@ public class ExerciseFragment extends Fragment implements RecyclerViewClickListe
 
         mExerciseViewModel = ViewModelFactory.obtainViewModel(getActivity(), ExerciseViewModel.class);
         mExerciseViewModel.start();
-
         mBinding.setViewModel(mExerciseViewModel);
 
         setupRv();

@@ -13,20 +13,21 @@ import android.view.ViewGroup;
 
 import com.tech387.wokroutapp.Injection;
 import com.tech387.wokroutapp.R;
+import com.tech387.wokroutapp.ViewModelFactory;
 import com.tech387.wokroutapp.data.storage.ContentRepository;
 import com.tech387.wokroutapp.data.storage.ShopPackageRespository;
 import com.tech387.wokroutapp.data.storage.local.shoppackage.ShopPackage;
+import com.tech387.wokroutapp.databinding.ShopPackageFragBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShopPackageFragment extends Fragment{
+public class ShopPackageFragment extends Fragment {
 
     private Context mContext;
-    private RecyclerView mRecyclerView;
+    private ShopPackageFragBinding mBinding;
     private RecycleViewAdapterThree mRecycleViewAdapterThree;
-    private ContentRepository mContentRepository;
-    private ShopPackageRespository mShopPackageRespository;
+    private ShopPackageViewModel mShopPackageViewModel;
 
     public static ShopPackageFragment newInstance() {
         return new ShopPackageFragment();
@@ -35,40 +36,28 @@ public class ShopPackageFragment extends Fragment{
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.shop_package_frag, container, false);
+        mBinding = ShopPackageFragBinding.inflate(inflater, container, false);
 
         mContext = getActivity();
 
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_package);
+        mShopPackageViewModel = ViewModelFactory.obtainViewModel(getActivity(), ShopPackageViewModel.class);
+        mShopPackageViewModel.onStart();
+        mBinding.setViewModel(mShopPackageViewModel);
 
         setupRvThree();
 
-        return view;
+        return mBinding.getRoot();
     }
 
 
-    public void setupRvThree(){
+    public void setupRvThree() {
 
-        mContentRepository = Injection.provideContentRepository(mContext);
-        mContentRepository.getContent();
 
-        mShopPackageRespository = Injection.provideShopPackageRepository(mContext);
-        mShopPackageRespository.getShopPackages(new ShopPackageRespository.GetExerciseCallback() {
-            @Override
-            public void onSuccess(List<ShopPackage> shopPackages) {
+        //create adapter and take list
+        mRecycleViewAdapterThree = new RecycleViewAdapterThree(mContext);
+        mBinding.rvPackage.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mBinding.rvPackage.setAdapter(mRecycleViewAdapterThree);
 
-                //create adapter and take list
-                mRecycleViewAdapterThree = new RecycleViewAdapterThree(mContext, shopPackages);
-                mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                mRecyclerView.setAdapter(mRecycleViewAdapterThree);
-
-            }
-
-            @Override
-            public void onError() {
-
-            }
-        });
 
     }
 }

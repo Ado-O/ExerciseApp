@@ -23,6 +23,7 @@ import com.tech387.wokroutapp.main.other.FourFragment;
 import com.tech387.wokroutapp.main.shoppackage.ShopPackageFragment;
 import com.tech387.wokroutapp.main.video.VideoActivity;
 import com.tech387.wokroutapp.main.wokrouts.WorkoutFragment;
+import com.tech387.wokroutapp.main.wokrouts.WorkoutViewModel;
 
 import java.util.ArrayList;
 
@@ -35,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout mTabLayout;
     private MainAdapter mAdapter;
     private ExerciseViewModel mExerciseViewModel;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         mViewPager = findViewById(R.id.vp_main);
         mTabLayout = (TabLayout) findViewById(R.id.tl_main);
 
+        //add view model
         mExerciseViewModel = ViewModelFactory.obtainViewModel(this, ExerciseViewModel.class);
 
         setupToolbar();
@@ -131,6 +132,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * send clickEvent is second activity
+     */
     private void setupEvents() {
 
         //listener

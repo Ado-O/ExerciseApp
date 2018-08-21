@@ -7,19 +7,20 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.tech387.wokroutapp.data.storage.local.shoppackage.ShopPackage;
+import com.tech387.wokroutapp.data.storage.local.workout.Workout;
 import com.tech387.wokroutapp.databinding.ShopPackageListBinding;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecycleViewAdapterThree extends RecyclerView.Adapter {
 
 
-    private List<ShopPackage> mList;
+    private List<ShopPackage> mList = new ArrayList<>();
     private LayoutInflater mInflater;
 
-    public RecycleViewAdapterThree(Context context, List<ShopPackage> list) {
+    public RecycleViewAdapterThree(Context context) {
         mInflater = LayoutInflater.from(context);
-        mList = list;
     }
 
     @NonNull
@@ -36,5 +37,12 @@ public class RecycleViewAdapterThree extends RecyclerView.Adapter {
     @Override
     public int getItemCount() {
         return mList.size();
+    }
+
+
+    public void setShopPackage(List<ShopPackage> list) {
+        mList.clear();
+        mList.addAll(list);
+        notifyDataSetChanged();
     }
 }

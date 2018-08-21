@@ -15,6 +15,11 @@ public class ExerciseBinding {
 
     private static final String TAG = ExerciseBinding.class.getSimpleName();
 
+    /**
+     * add get name tags from tags scope
+     * @param textView -> send string in textView layout
+     * @param tags -> tags from list of object Tag
+     */
     @SuppressWarnings("unchecked")
     @BindingAdapter({"app:exerciseTags"})
     public static void setText(TextView textView, List<Tag> tags) {
@@ -33,7 +38,11 @@ public class ExerciseBinding {
         textView.setText(finalTags);
     }
 
-    //image
+    /**
+     * use library Glide
+     * @param view -> imageVIew
+     * @param img -> use string in this case string URL
+     */
     @SuppressWarnings("unchecked")
     @BindingAdapter({"app:loadImage"})
     public static void setImage(ImageView view, String img){
@@ -43,6 +52,11 @@ public class ExerciseBinding {
                 .into(view);
     }
 
+    /**
+     * checking adapter
+     * @param recyclerView
+     * @param items
+     */
     @SuppressWarnings("unchecked")
     @BindingAdapter("app:exercise")
     public static void setExercise(RecyclerView recyclerView, List items) {

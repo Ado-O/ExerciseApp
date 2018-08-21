@@ -9,16 +9,16 @@ import android.view.ViewGroup;
 import com.tech387.wokroutapp.data.storage.local.workout.Workout;
 import com.tech387.wokroutapp.databinding.WorkoutListBinding;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecycleViewAdapterTwo extends RecyclerView.Adapter {
 
-    private List<Workout> mList;
+    private List<Workout> mList = new ArrayList<>();
     private LayoutInflater mInflater;
 
-    public RecycleViewAdapterTwo(Context context, List<Workout> list) {
+    public RecycleViewAdapterTwo(Context context) {
         mInflater = LayoutInflater.from(context);
-        mList = list;
     }
 
     @NonNull
@@ -35,5 +35,12 @@ public class RecycleViewAdapterTwo extends RecyclerView.Adapter {
     @Override
     public int getItemCount() {
         return mList.size();
+    }
+
+
+    public void setWorkout(List<Workout> list) {
+        mList.clear();
+        mList.addAll(list);
+        notifyDataSetChanged();
     }
 }

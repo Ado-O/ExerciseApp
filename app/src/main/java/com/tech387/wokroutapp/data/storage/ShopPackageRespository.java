@@ -24,7 +24,7 @@ public class ShopPackageRespository {
         return sInstance;
     }
 
-    public void getShopPackages(final GetExerciseCallback callback) {
+    public void getShopPackages(final GetShopPackages callback) {
         mShopPackageLocalDataSource.getShopPackage(new ShopPackageLocalDataSource.GetExerciseCallback() {
             @Override
             public void onSuccess(List<ShopPackage> shopPackages) {
@@ -39,7 +39,7 @@ public class ShopPackageRespository {
         });
     }
 
-    public interface GetExerciseCallback {
+    public interface GetShopPackages {
         void onSuccess(List<ShopPackage> shopPackages);
 
         void onError();
