@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 public class BaseResponse implements Serializable {
+
     @SerializedName("status")
     @Expose
     private int mStatus;
@@ -21,7 +22,6 @@ public class BaseResponse implements Serializable {
     public void setStatus(int status) {
         mStatus = status;
     }
-
 
     public ResponseResponse getResponseResponse() {
         return mResponseResponse;

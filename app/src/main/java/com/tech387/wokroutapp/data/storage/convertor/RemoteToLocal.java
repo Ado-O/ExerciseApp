@@ -43,7 +43,6 @@ public class RemoteToLocal {
                 }
             }
 
-
             exercises.add(
                     new Exercise(
                             e.getId(),

@@ -138,12 +138,8 @@ public class MainActivity extends AppCompatActivity {
     private void setupEvents() {
 
         //listener
-        mExerciseViewModel.getOpenExerciseEvente().observe(this, new Observer<Exercise>() {
-            @Override
-            public void onChanged(@Nullable Exercise exercise) {
-                VideoActivity.startActivity(MainActivity.this, exercise);
-            }
-        });
+        mExerciseViewModel.getOpenExerciseEvente().observe(this, exercise ->
+                VideoActivity.startActivity(MainActivity.this, exercise));
 
     }
 

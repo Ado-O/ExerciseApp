@@ -11,15 +11,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.tech387.wokroutapp.Injection;
-import com.tech387.wokroutapp.R;
 import com.tech387.wokroutapp.ViewModelFactory;
 import com.tech387.wokroutapp.data.storage.local.exercise.Exercise;
-import com.tech387.wokroutapp.data.storage.ContentRepository;
-import com.tech387.wokroutapp.data.storage.ExerciseRepository;
 import com.tech387.wokroutapp.databinding.ExerciseFragBinding;
-import com.tech387.wokroutapp.main.video.VideoActivity;
 import com.tech387.wokroutapp.util.RecyclerViewClickListener;
 
 import java.util.List;
